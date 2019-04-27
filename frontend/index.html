@@ -1,0 +1,145 @@
+  <!doctype html>
+  <html class="no-js" lang="en">
+
+  <head>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <title>Invoice</title>
+  </head>
+
+  <body>
+<div class="container">
+  <h2>Invoice</h2>
+
+    <form action="db/db_sale.php" method="post">
+     <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Unit Price</th>
+          <th>Quantity</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <td class="col-md-6">Sample Product 1</td>
+          <td class="col-md-2">
+
+
+            <input   id="retail1" type="text" value="" name=""> 
+          </td>
+          <td class="col-md-2">
+            <input onchange="myFunction5(quantity1,retail1,total_cost1);TotalPrice()" type="number" onkeypress="return isNumberKeyDiscount(event)" max="" min="1" class="qp" id="quantity1" name="quantity[]">
+          </td>
+
+          <td class="col-md-2">
+            <input type="text"  class="price" value="" style="border:none;" readonly="" name=""  id="total_cost1">
+          </td>
+        </tr>
+        <tr>
+          <td class="col-md-6">Sample Product 2</td>
+          <td class="col-md-2">
+
+            <input   id="retail2" type="text" value="" name=""> 
+          </td>
+          <td class="col-md-2">
+            <input onchange="myFunction6(quantity2,retail2,total_cost2);TotalPrice()" type="number" onkeypress="return isNumberKeyDiscount(event)" max="" min="1" class="qp" id="quantity2" name="quantity[]">
+          </td>
+
+          <td class="col-md-2">
+            <input type="text" class="price" value="" style="border:none;" readonly="" name=""  id="total_cost2">
+          </td>
+        </tr>
+
+
+
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js "></script>
+
+        <script>
+          function TotalPrice() {
+            var sum = 0;
+            $('.price').each(function() {
+              sum += Number($(this).val());
+            });
+            $('#totalPriceR').val(sum);
+          };
+        </script>    
+
+        <tr>
+         <td></td>
+         <td></td>
+         <td class="text-right"><h3><strong>Total: </strong></h3></td>
+         <td class="text-left text-danger"><h3><strong><input id="totalPriceR" class="total" type="text"  readonly=""  name="total"></strong></h3></td>
+
+       </tr>
+       <tr>
+         <td></td>
+         <td></td>
+         <td class="text-right"><h3><strong>Discount(%): </strong></h3></td>
+         <td class="text-left text-danger"><h3><strong><input id="discountR" class="total" type="text" required="" onkeypress="return isNumberKeyDiscount(event)"   name="less"> </strong></h3></td>
+
+       </tr>
+       <tr>
+         <td></td>
+         <td></td>
+         <td class="text-right"><h3><strong>Amount Due: </strong></h3></td>
+         <td class="text-left text-danger"><h3><strong><input id="payableR" class="total" type="text" readonly=""  name="payable"></strong></h3></td>
+
+       </tr>
+       
+     </tbody>
+   </table>
+
+ </form>
+ <script type="text/javascript">
+  function myFunction5(q,r,t){
+    var quantity =q.value;
+    var price =r.value;
+    var cal=price*quantity;
+    document.getElementById('total_cost1').value=parseInt(cal);
+  }
+</script>
+<script type="text/javascript">
+  function myFunction6(q,r,t){
+    var quantity =q.value;
+    var price =r.value;
+    var cal=price*quantity;
+    document.getElementById('total_cost2').value=parseInt(cal);
+  }
+</script>
+<script type="text/javascript">
+  function isNumberKeyDiscount(evt){
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode > 31 && (charCode != 46 &&(charCode < 48 || charCode > 57)))
+      return false;
+    return true;
+  }
+
+</script>
+
+<script type="text/javascript">
+
+  $(document).ready(function(){
+    $('#totalPriceR').keyup(calculateR);
+    $('#discountR').keyup(calculateR);
+    $('#payableR').keyup(calculateR);
+    
+  });
+  function calculateR(e)
+  {
+    //$('#payable').val($('#quantity').val() * $('#price').val());
+    $disco=($('#totalPriceR').val() * ($('#discountR').val()/100));
+    //$('#payableR').val($('#totalPriceR').val() * ($('#discountR').val()/100));
+    $('#payableR').val($('#totalPriceR').val() -$disco );
+
+  }
+</script>
+
+</div>
+</body>
+
+</html>
