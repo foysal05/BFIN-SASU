@@ -7,7 +7,7 @@ session_start();
 	 $password = mysqli_real_escape_string($con, $_POST['password']);
 	
 	
-	$result = mysqli_query($con, "SELECT * FROM admins  WHERE email = '" . $email. "' and password = '" . $password. "'");
+	$result = mysqli_query($con, "SELECT * FROM admins  WHERE email = '" . $email. "' and pass = '" . $password. "'");
 	
 	$result2 = mysqli_query($con, "SELECT * FROM users  WHERE email = '" . $email. "' and password = '" . $password. "'");
 	
@@ -15,7 +15,6 @@ session_start();
 		$_SESSION['email']=$email;
 		//$_SESSION['password']=$password;
 		$_SESSION['name']=$row['name'];
-		
 		$_SESSION['id']=$row['aid'];
 		$_SESSION['status']=$row['status'];
 		$_SESSION['ad_login']=TRUE;

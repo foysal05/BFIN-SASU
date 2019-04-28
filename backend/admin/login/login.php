@@ -30,7 +30,7 @@
 					<img src="images/img-01.png" alt="IMG">
 				</div>
 
-				<form action="../../db/db_login.php" method="post" class="login100-form validate-form">
+				<form action="../../db/a_login.php" method="post" class="login100-form validate-form">
 					<span class="login100-form-title">
 						Administritive Login
 					</span>
@@ -52,7 +52,7 @@
 					</div>
 					
 					<div class="container-login100-form-btn">
-						<input type="submit" value="Login" name="login" class="login100-form-btn">
+						<input type="submit" value="Login" name="a_login" class="login100-form-btn">
 							
 						
 					</div>
